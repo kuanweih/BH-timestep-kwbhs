@@ -2,11 +2,15 @@ import numpy as np
 import multiprocessing
 from KWBHS import *
 
+PATH_ZOO = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/'
+PATH_RUN = ['run_10Mpc_362341/Run_seed5e5/Con_2/']
+#TODO should I use list comprehension here?
+#TODO PATH_RUN[:16] will give 'run_10Mpc_362341'
+#TODO PATH_RUN[17:-7] will give 'Run_seed5e5'
 
-h = 0.697
-
-# main function
-
+runs = ['362341/Run_seed5e5']
+dir_name = 'allbhdata/10Mpc_{}_{}/'.format(
+    realization_seed[:6], realization_seed[-3:])
 
 def allbh_from_txt(realization_seed):
     path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_10Mpc_{}/Con_2/'.format(
@@ -56,50 +60,11 @@ def allbh_from_txt(realization_seed):
     np.save('{}bhz'.format(dir_name), bhzs)
 
 
-# runs = ['090585/Run_seed5e5',
-#         '181170/Run_seed5e5',
-#         '271755/Run_seed5e5',
-#         '362340/Run_seed5e5',
-#         '452925/Run_seed5e5',
-#         '543510/Run_seed5e5',
-#         '634095/Run_seed5e5',
-#         '724680/Run_seed5e5',
-#         '815265/Run_seed5e5',
-#         '905850/Run_seed5e5',
-
-#         '090586/Run_seed5e5',
-#         '181171/Run_seed5e5',
-#         '271756/Run_seed5e5',
-#         '362341/Run_seed5e5',
-#         '452926/Run_seed5e5',
-#         '543511/Run_seed5e5',
-#         '634096/Run_seed5e5',
-#         '724681/Run_seed5e5',
-#         '815266/Run_seed5e5',
-#         '905851/Run_seed5e5']
-
-# runs = ['271755/Run_seed5e3',
-
-#         '362341/Run_seed5e3',
-#         '543511/Run_seed5e3']
-
-# runs = ['271755/Run_seed5e4',
-
-#        '362341/Run_seed5e4',
-#        '543511/Run_seed5e4']
-
-# runs = ['543511/Run_seed5e3','543511/Run_seed5e5',
-#        '815265/Run_seed5e3','815265/Run_seed5e5']
-
-# runs = ['543511/Run_seed5e3','543511/Run_seed5e4','543511/Run_seed5e5']
-# runs = ['543511/Run_seed5e5']
-
 # runs = ['181170/Run_seed5e5',
 #         '271755/Run_seed5e5',
 #         '362341/Run_seed5e5',
 #         '543511/Run_seed5e5',
 #         '815265/Run_seed5e5']
-
 runs = ['362341/Run_seed5e5']
 
 # runs = ['543511_396/Run_seed5e3']
