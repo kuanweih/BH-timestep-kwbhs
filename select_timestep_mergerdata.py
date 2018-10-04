@@ -112,7 +112,7 @@ def mergers_from_txt(realization_seed):
 #         '10Mpc_543511/Run_seed5e5',
 #         '10Mpc_815265/Run_seed5e5']
 
-runs = ['15Mpc_362341/Run_seed5e5']
+runs = ['10Mpc_362341/Run_seed5e5']
 
 # runs = ['15Mpc_543511_samefofmass/Run_seed5e4']
 # runs = ['15Mpc_543511_samefofmass/Run_seed5e3']
