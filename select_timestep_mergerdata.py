@@ -12,50 +12,50 @@ def mergers_from_txt(realization_seed):
     rs = realization_seed
 
     # get merger id from mmbh ids
-    mmbhids = np.load('mmbhdata/{0}_{1}/bhid.npy'.format(rs[:12], rs[-3:]))
+    mmbhids = np.load('mmbhdata/{}_{}/bhid.npy'.format(rs[:12], rs[-3:]))
     mgids = np.unique(mmbhids)
 
     # load all bh data
     redshifts = np.load(
-        'allbhdata/{0}_{1}/redshift.npy'.format(rs[:12], rs[-3:]))
-    bhmasss = np.load('allbhdata/{0}_{1}/bhmass.npy'.format(rs[:12], rs[-3:]))
-    bhaccs = np.load('allbhdata/{0}_{1}/bhacc.npy'.format(rs[:12], rs[-3:]))
-    bhids = np.load('allbhdata/{0}_{1}/bhid.npy'.format(rs[:12], rs[-3:]))
-    bhrhos = np.load('allbhdata/{0}_{1}/bhrho.npy'.format(rs[:12], rs[-3:]))
-    bhcss = np.load('allbhdata/{0}_{1}/bhcs.npy'.format(rs[:12], rs[-3:]))
-    bhvels = np.load('allbhdata/{0}_{1}/bhvel.npy'.format(rs[:12], rs[-3:]))
-    bhxs = np.load('allbhdata/{0}_{1}/bhx.npy'.format(rs[:12], rs[-3:]))
-    bhys = np.load('allbhdata/{0}_{1}/bhy.npy'.format(rs[:12], rs[-3:]))
-    bhzs = np.load('allbhdata/{0}_{1}/bhz.npy'.format(rs[:12], rs[-3:]))
+        'allbhdata/{}_{}/redshift.npy'.format(rs[:12], rs[-3:]))
+    bhmasss = np.load('allbhdata/{}_{}/bhmass.npy'.format(rs[:12], rs[-3:]))
+    bhaccs = np.load('allbhdata/{}_{}/bhacc.npy'.format(rs[:12], rs[-3:]))
+    bhids = np.load('allbhdata/{}_{}/bhid.npy'.format(rs[:12], rs[-3:]))
+    bhrhos = np.load('allbhdata/{}_{}/bhrho.npy'.format(rs[:12], rs[-3:]))
+    bhcss = np.load('allbhdata/{}_{}/bhcs.npy'.format(rs[:12], rs[-3:]))
+    bhvels = np.load('allbhdata/{}_{}/bhvel.npy'.format(rs[:12], rs[-3:]))
+    bhxs = np.load('allbhdata/{}_{}/bhx.npy'.format(rs[:12], rs[-3:]))
+    bhys = np.load('allbhdata/{}_{}/bhy.npy'.format(rs[:12], rs[-3:]))
+    bhzs = np.load('allbhdata/{}_{}/bhz.npy'.format(rs[:12], rs[-3:]))
 
     # # get merger id from mmbh ids
-    # mmbhids = np.load('mmbhdata/{0}_{1}_samefof/bhid.npy'.format(rs[:12],rs[-3:]))
-    # mmbhids = np.load('mmbhdata/{0}_{1}_high396/bhid.npy'.format(rs[:12],rs[-3:]))
+    # mmbhids = np.load('mmbhdata/{}_{}_samefof/bhid.npy'.format(rs[:12],rs[-3:]))
+    # mmbhids = np.load('mmbhdata/{}_{}_high396/bhid.npy'.format(rs[:12],rs[-3:]))
     # mgids = np.unique(mmbhids)
 
     # load all bh data
-    # redshifts = np.load('allbhdata/{0}_{1}_high396/redshift.npy'.format(rs[:12],rs[-3:]))
-    # bhmasss   = np.load('allbhdata/{0}_{1}_high396/bhmass.npy'.format(rs[:12],rs[-3:]))
-    # bhaccs    = np.load('allbhdata/{0}_{1}_high396/bhacc.npy'.format(rs[:12],rs[-3:]))
-    # bhids     = np.load('allbhdata/{0}_{1}_high396/bhid.npy'.format(rs[:12],rs[-3:]))
-    # bhrhos    = np.load('allbhdata/{0}_{1}_high396/bhrho.npy'.format(rs[:12],rs[-3:]))
-    # bhcss     = np.load('allbhdata/{0}_{1}_high396/bhcs.npy'.format(rs[:12],rs[-3:]))
-    # bhvels    = np.load('allbhdata/{0}_{1}_high396/bhvel.npy'.format(rs[:12],rs[-3:]))
-    # bhxs      = np.load('allbhdata/{0}_{1}_high396/bhx.npy'.format(rs[:12],rs[-3:]))
-    # bhys      = np.load('allbhdata/{0}_{1}_high396/bhy.npy'.format(rs[:12],rs[-3:]))
-    # bhzs      = np.load('allbhdata/{0}_{1}_high396/bhz.npy'.format(rs[:12],rs[-3:]))
+    # redshifts = np.load('allbhdata/{}_{}_high396/redshift.npy'.format(rs[:12],rs[-3:]))
+    # bhmasss   = np.load('allbhdata/{}_{}_high396/bhmass.npy'.format(rs[:12],rs[-3:]))
+    # bhaccs    = np.load('allbhdata/{}_{}_high396/bhacc.npy'.format(rs[:12],rs[-3:]))
+    # bhids     = np.load('allbhdata/{}_{}_high396/bhid.npy'.format(rs[:12],rs[-3:]))
+    # bhrhos    = np.load('allbhdata/{}_{}_high396/bhrho.npy'.format(rs[:12],rs[-3:]))
+    # bhcss     = np.load('allbhdata/{}_{}_high396/bhcs.npy'.format(rs[:12],rs[-3:]))
+    # bhvels    = np.load('allbhdata/{}_{}_high396/bhvel.npy'.format(rs[:12],rs[-3:]))
+    # bhxs      = np.load('allbhdata/{}_{}_high396/bhx.npy'.format(rs[:12],rs[-3:]))
+    # bhys      = np.load('allbhdata/{}_{}_high396/bhy.npy'.format(rs[:12],rs[-3:]))
+    # bhzs      = np.load('allbhdata/{}_{}_high396/bhz.npy'.format(rs[:12],rs[-3:]))
 
     # load all bh data
-    # redshifts = np.load('allbhdata/{0}_{1}_samefof/redshift.npy'.format(rs[:12],rs[-3:]))
-    # bhmasss   = np.load('allbhdata/{0}_{1}_samefof/bhmass.npy'.format(rs[:12],rs[-3:]))
-    # bhaccs    = np.load('allbhdata/{0}_{1}_samefof/bhacc.npy'.format(rs[:12],rs[-3:]))
-    # bhids     = np.load('allbhdata/{0}_{1}_samefof/bhid.npy'.format(rs[:12],rs[-3:]))
-    # bhrhos    = np.load('allbhdata/{0}_{1}_samefof/bhrho.npy'.format(rs[:12],rs[-3:]))
-    # bhcss     = np.load('allbhdata/{0}_{1}_samefof/bhcs.npy'.format(rs[:12],rs[-3:]))
-    # bhvels    = np.load('allbhdata/{0}_{1}_samefof/bhvel.npy'.format(rs[:12],rs[-3:]))
-    # bhxs      = np.load('allbhdata/{0}_{1}_samefof/bhx.npy'.format(rs[:12],rs[-3:]))
-    # bhys      = np.load('allbhdata/{0}_{1}_samefof/bhy.npy'.format(rs[:12],rs[-3:]))
-    # bhzs      = np.load('allbhdata/{0}_{1}_samefof/bhz.npy'.format(rs[:12],rs[-3:]))
+    # redshifts = np.load('allbhdata/{}_{}_samefof/redshift.npy'.format(rs[:12],rs[-3:]))
+    # bhmasss   = np.load('allbhdata/{}_{}_samefof/bhmass.npy'.format(rs[:12],rs[-3:]))
+    # bhaccs    = np.load('allbhdata/{}_{}_samefof/bhacc.npy'.format(rs[:12],rs[-3:]))
+    # bhids     = np.load('allbhdata/{}_{}_samefof/bhid.npy'.format(rs[:12],rs[-3:]))
+    # bhrhos    = np.load('allbhdata/{}_{}_samefof/bhrho.npy'.format(rs[:12],rs[-3:]))
+    # bhcss     = np.load('allbhdata/{}_{}_samefof/bhcs.npy'.format(rs[:12],rs[-3:]))
+    # bhvels    = np.load('allbhdata/{}_{}_samefof/bhvel.npy'.format(rs[:12],rs[-3:]))
+    # bhxs      = np.load('allbhdata/{}_{}_samefof/bhx.npy'.format(rs[:12],rs[-3:]))
+    # bhys      = np.load('allbhdata/{}_{}_samefof/bhy.npy'.format(rs[:12],rs[-3:]))
+    # bhzs      = np.load('allbhdata/{}_{}_samefof/bhz.npy'.format(rs[:12],rs[-3:]))
 
     def by_merger_id(mgids, bhids, quantity):
         con = np.array([False] * len(bhids))
@@ -78,11 +78,11 @@ def mergers_from_txt(realization_seed):
     # create directory name according to the run
     import os
     import errno
-    # dir_name = 'mergerdata/15Mpc_{0}_{1}_high396/'.format(realization_seed[:6],realization_seed[-3:])
-    # dir_name = 'mergerdata/15Mpc_{0}_{1}_newcode/'.format(realization_seed[:6],realization_seed[-3:])
-    # dir_name = 'mergerdata/15Mpc_{0}_{1}_samefof/'.format(realization_seed[:6],realization_seed[-3:])
-    # dir_name = 'mergerdata/10Mpc_{0}_{1}_samefof/'.format(realization_seed[:6],realization_seed[-3:])
-    dir_name = 'mergerdata/{0}_{1}/'.format(
+    # dir_name = 'mergerdata/15Mpc_{}_{}_high396/'.format(realization_seed[:6],realization_seed[-3:])
+    # dir_name = 'mergerdata/15Mpc_{}_{}_newcode/'.format(realization_seed[:6],realization_seed[-3:])
+    # dir_name = 'mergerdata/15Mpc_{}_{}_samefof/'.format(realization_seed[:6],realization_seed[-3:])
+    # dir_name = 'mergerdata/10Mpc_{}_{}_samefof/'.format(realization_seed[:6],realization_seed[-3:])
+    dir_name = 'mergerdata/{}_{}/'.format(
         realization_seed[:12], realization_seed[-3:])
     if not os.path.exists(os.path.dirname(dir_name)):
         try:
@@ -92,16 +92,16 @@ def mergers_from_txt(realization_seed):
                 raise
 
     # save date
-    np.save('{0}redshift'.format(dir_name), redshift)
-    np.save('{0}bhmass'.format(dir_name), bhmass)
-    np.save('{0}bhid'.format(dir_name), bhid)
-    np.save('{0}bhacc'.format(dir_name), bhacc)
-    np.save('{0}bhrho'.format(dir_name), bhrho)
-    np.save('{0}bhcs'.format(dir_name), bhcs)
-    np.save('{0}bhvel'.format(dir_name), bhvel)
-    np.save('{0}bhx'.format(dir_name), bhx)
-    np.save('{0}bhy'.format(dir_name), bhy)
-    np.save('{0}bhz'.format(dir_name), bhz)
+    np.save('{}redshift'.format(dir_name), redshift)
+    np.save('{}bhmass'.format(dir_name), bhmass)
+    np.save('{}bhid'.format(dir_name), bhid)
+    np.save('{}bhacc'.format(dir_name), bhacc)
+    np.save('{}bhrho'.format(dir_name), bhrho)
+    np.save('{}bhcs'.format(dir_name), bhcs)
+    np.save('{}bhvel'.format(dir_name), bhvel)
+    np.save('{}bhx'.format(dir_name), bhx)
+    np.save('{}bhy'.format(dir_name), bhy)
+    np.save('{}bhz'.format(dir_name), bhz)
 
 
 # runs = ['15Mpc_543511/Run_seed5e3','15Mpc_543511/Run_seed5e4','15Mpc_543511/Run_seed5e5']

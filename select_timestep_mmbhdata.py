@@ -10,7 +10,7 @@ h = 0.697
 
 def mmbh_from_txt(realization_seed):
     # path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_10Mpc_{0}/Con_2/'.format(realization_seed)
-    path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_15Mpc_{0}/Con_2/'.format(
+    path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_15Mpc_{}/Con_2/'.format(
         realization_seed)
     # path_run = '/nfs/nas-0-1/kuanweih/simulation_zoo/run_15Mpc_{0}/Con_2/'.format(realization_seed)
     # path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_20Mpc_{0}/Con_2/'.format(realization_seed)
@@ -82,7 +82,7 @@ def mmbh_from_txt(realization_seed):
     # dir_name = 'mmbhdata/15Mpc_{0}_{1}_high396/'.format(realization_seed[:6],realization_seed[-3:])
     # dir_name = 'mmbhdata/15Mpc_{0}_{1}_newcode/'.format(realization_seed[:6],realization_seed[-3:])
     # dir_name = 'mmbhdata/15Mpc_{0}_{1}_samefof/'.format(realization_seed[:6],realization_seed[-3:])
-    dir_name = 'mmbhdata/15Mpc_{0}_{1}/'.format(
+    dir_name = 'mmbhdata/15Mpc_{}_{}/'.format(
         realization_seed[:6], realization_seed[-3:])
     # dir_name = 'mmbhdata/10Mpc_{0}_{1}/'.format(realization_seed[:6],realization_seed[-3:])
     if not os.path.exists(os.path.dirname(dir_name)):
@@ -93,16 +93,16 @@ def mmbh_from_txt(realization_seed):
                 raise
 
     # save date
-    np.save('{0}redshift'.format(dir_name), redshift)
-    np.save('{0}bhmass'.format(dir_name), bhmass)
-    np.save('{0}bhid'.format(dir_name), bhid)
-    np.save('{0}bhacc'.format(dir_name), bhacc)
-    np.save('{0}bhrho'.format(dir_name), bhrho)
-    np.save('{0}bhcs'.format(dir_name), bhcs)
-    np.save('{0}bhvel'.format(dir_name), bhvel)
-    np.save('{0}bhx'.format(dir_name), bhx)
-    np.save('{0}bhy'.format(dir_name), bhy)
-    np.save('{0}bhz'.format(dir_name), bhz)
+    np.save('{}redshift'.format(dir_name), redshift)
+    np.save('{}bhmass'.format(dir_name), bhmass)
+    np.save('{}bhid'.format(dir_name), bhid)
+    np.save('{}bhacc'.format(dir_name), bhacc)
+    np.save('{}bhrho'.format(dir_name), bhrho)
+    np.save('{}bhcs'.format(dir_name), bhcs)
+    np.save('{}bhvel'.format(dir_name), bhvel)
+    np.save('{}bhx'.format(dir_name), bhx)
+    np.save('{}bhy'.format(dir_name), bhy)
+    np.save('{}bhz'.format(dir_name), bhz)
 
 
 # runs = ['090585/Run_seed5e5',
