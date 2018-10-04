@@ -6,23 +6,26 @@ from KWBHS import *
 h = 0.697
 
 # main function
+
+
 def allbh_from_txt(realization_seed):
-    path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_15Mpc_{0}/Con_2/'.format(realization_seed)
+    path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_15Mpc_{0}/Con_2/'.format(
+        realization_seed)
     # path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_10Mpc_{0}/Con_2/'.format(realization_seed)
     # path_run = '/nfs/nas-0-1/kuanweih/simulation_zoo/run_15Mpc_{0}/Con_2/'.format(realization_seed)
     kwbh = KWBHS(path_run)
 
     # get data from text files
     redshifts = kwbh.get_redshifts()
-    bhids     = kwbh.get_bhid()
-    bhmasss   = kwbh.get_bhmass()
-    bhaccs    = kwbh.get_bhacc()
-    bhrhos    = kwbh.get_bhrho()
-    bhcss     = kwbh.get_bhcs()
-    bhvels    = kwbh.get_bhvel()
-    bhxs      = kwbh.get_bhpos(0)
-    bhys      = kwbh.get_bhpos(1)
-    bhzs      = kwbh.get_bhpos(2)
+    bhids = kwbh.get_bhid()
+    bhmasss = kwbh.get_bhmass()
+    bhaccs = kwbh.get_bhacc()
+    bhrhos = kwbh.get_bhrho()
+    bhcss = kwbh.get_bhcs()
+    bhvels = kwbh.get_bhvel()
+    bhxs = kwbh.get_bhpos(0)
+    bhys = kwbh.get_bhpos(1)
+    bhzs = kwbh.get_bhpos(2)
 
     # create directory name according to the run
     import os
@@ -30,12 +33,13 @@ def allbh_from_txt(realization_seed):
     # dir_name = 'allbhdata/15Mpc_{0}_{1}_high396/'.format(realization_seed[:6],realization_seed[-3:])
     # dir_name = 'allbhdata/15Mpc_{0}_{1}_newcode/'.format(realization_seed[:6],realization_seed[-3:])
     # dir_name = 'allbhdata/15Mpc_{0}_{1}_samefof/'.format(realization_seed[:6],realization_seed[-3:])
-    dir_name = 'allbhdata/15Mpc_{0}_{1}/'.format(realization_seed[:6],realization_seed[-3:])
+    dir_name = 'allbhdata/15Mpc_{0}_{1}/'.format(
+        realization_seed[:6], realization_seed[-3:])
     # dir_name = 'allbhdata/10Mpc_{0}_{1}/'.format(realization_seed[:6],realization_seed[-3:])
     if not os.path.exists(os.path.dirname(dir_name)):
         try:
             os.makedirs(os.path.dirname(dir_name))
-        except OSError as exc: # Guard against race condition
+        except OSError as exc:  # Guard against race condition
             if exc.errno != errno.EEXIST:
                 raise
 
@@ -79,12 +83,12 @@ def allbh_from_txt(realization_seed):
 #         '362341/Run_seed5e3',
 #         '543511/Run_seed5e3']
 
-#runs = ['271755/Run_seed5e4',
+# runs = ['271755/Run_seed5e4',
 
 #        '362341/Run_seed5e4',
 #        '543511/Run_seed5e4']
 
-#runs = ['543511/Run_seed5e3','543511/Run_seed5e5',
+# runs = ['543511/Run_seed5e3','543511/Run_seed5e5',
 #        '815265/Run_seed5e3','815265/Run_seed5e5']
 
 # runs = ['543511/Run_seed5e3','543511/Run_seed5e4','543511/Run_seed5e5']
@@ -107,5 +111,5 @@ runs = ['362341/Run_seed5e5']
 
 
 p = multiprocessing.Pool(16)
-out=p.map( allbh_from_txt, runs )
+out = p.map(allbh_from_txt, runs)
 p.close()
