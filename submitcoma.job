@@ -4,9 +4,10 @@
 #PBS -m abe
 #PBS -l nodes=1:ppn=16
 #PBS -l walltime=7:00:00:00
+
 cd $PBS_O_WORKDIR
+source activate mypython3
 
-
-# python  select_timestep_mmbhdata.py
-# python  select_timestep_allbhdata.py
-python  select_timestep_mergerdata.py
+python  select_timestep_mmbhdata.py  1>stdout-mmb  2>stderr-mmb
+python  select_timestep_allbhdata.py  1>stdout-all  2>stderr-all
+python  select_timestep_mergerdata.py  1>stdout-mer  2>stderr-mer
