@@ -9,10 +9,10 @@ h = 0.697
 
 
 def allbh_from_txt(realization_seed):
-    path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_15Mpc_{0}/Con_2/'.format(
+    path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_10Mpc_{}/Con_2/'.format(
         realization_seed)
-    # path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_10Mpc_{0}/Con_2/'.format(realization_seed)
-    # path_run = '/nfs/nas-0-1/kuanweih/simulation_zoo/run_15Mpc_{0}/Con_2/'.format(realization_seed)
+    # path_run = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/run_10Mpc_{}/Con_2/'.format(realization_seed)
+    # path_run = '/nfs/nas-0-1/kuanweih/simulation_zoo/run_15Mpc_{}/Con_2/'.format(realization_seed)
     kwbh = KWBHS(path_run)
 
     # get data from text files
@@ -30,12 +30,12 @@ def allbh_from_txt(realization_seed):
     # create directory name according to the run
     import os
     import errno
-    # dir_name = 'allbhdata/15Mpc_{0}_{1}_high396/'.format(realization_seed[:6],realization_seed[-3:])
-    # dir_name = 'allbhdata/15Mpc_{0}_{1}_newcode/'.format(realization_seed[:6],realization_seed[-3:])
-    # dir_name = 'allbhdata/15Mpc_{0}_{1}_samefof/'.format(realization_seed[:6],realization_seed[-3:])
-    dir_name = 'allbhdata/15Mpc_{0}_{1}/'.format(
+    # dir_name = 'allbhdata/15Mpc_{}_{}_high396/'.format(realization_seed[:6],realization_seed[-3:])
+    # dir_name = 'allbhdata/15Mpc_{}_{}_newcode/'.format(realization_seed[:6],realization_seed[-3:])
+    # dir_name = 'allbhdata/15Mpc_{}_{}_samefof/'.format(realization_seed[:6],realization_seed[-3:])
+    dir_name = 'allbhdata/10Mpc_{}_{}/'.format(
         realization_seed[:6], realization_seed[-3:])
-    # dir_name = 'allbhdata/10Mpc_{0}_{1}/'.format(realization_seed[:6],realization_seed[-3:])
+    # dir_name = 'allbhdata/10Mpc_{}_{}/'.format(realization_seed[:6],realization_seed[-3:])
     if not os.path.exists(os.path.dirname(dir_name)):
         try:
             os.makedirs(os.path.dirname(dir_name))
@@ -44,16 +44,16 @@ def allbh_from_txt(realization_seed):
                 raise
 
     # save date
-    np.save('{0}redshift'.format(dir_name), redshifts)
-    np.save('{0}bhmass'.format(dir_name), bhmasss)
-    np.save('{0}bhid'.format(dir_name), bhids)
-    np.save('{0}bhacc'.format(dir_name), bhaccs)
-    np.save('{0}bhrho'.format(dir_name), bhrhos)
-    np.save('{0}bhcs'.format(dir_name), bhcss)
-    np.save('{0}bhvel'.format(dir_name), bhvels)
-    np.save('{0}bhx'.format(dir_name), bhxs)
-    np.save('{0}bhy'.format(dir_name), bhys)
-    np.save('{0}bhz'.format(dir_name), bhzs)
+    np.save('{}redshift'.format(dir_name), redshifts)
+    np.save('{}bhmass'.format(dir_name), bhmasss)
+    np.save('{}bhid'.format(dir_name), bhids)
+    np.save('{}bhacc'.format(dir_name), bhaccs)
+    np.save('{}bhrho'.format(dir_name), bhrhos)
+    np.save('{}bhcs'.format(dir_name), bhcss)
+    np.save('{}bhvel'.format(dir_name), bhvels)
+    np.save('{}bhx'.format(dir_name), bhxs)
+    np.save('{}bhy'.format(dir_name), bhys)
+    np.save('{}bhz'.format(dir_name), bhzs)
 
 
 # runs = ['090585/Run_seed5e5',
