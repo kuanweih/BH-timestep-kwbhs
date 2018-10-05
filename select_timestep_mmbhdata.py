@@ -1,44 +1,12 @@
 import numpy as np
 import multiprocessing
 from KWBHS import *
-
-
-PATH_ZOO = '/physics2/kuanweih/project_BH_seedmass/simulation_zoo/'
-PATH_RUNS = ['run_10Mpc_362341/Run_seed5e5/Con_2/']    # list of runs
-# TODO should I use list comprehension here?
-# TODO PATH_RUN[:16] will give 'run_10Mpc_362341'
-# TODO PATH_RUN[17:-7] will give 'Run_seed5e5'
-# TODO PATH_RUN[25:-7] will give '5e5'
-
-
-def npsaves(dir_name, redshifts, bhmasss, bhids, bhaccs,
-            bhrhos, bhcss, bhvels, bhxs, bhys, bhzs):
-    """ save bh data """
-    np.save('{}redshift'.format(dir_name), redshifts)
-    np.save('{}bhmass'.format(dir_name), bhmasss)
-    np.save('{}bhid'.format(dir_name), bhids)
-    np.save('{}bhacc'.format(dir_name), bhaccs)
-    np.save('{}bhrho'.format(dir_name), bhrhos)
-    np.save('{}bhcs'.format(dir_name), bhcss)
-    np.save('{}bhvel'.format(dir_name), bhvels)
-    np.save('{}bhx'.format(dir_name), bhxs)
-    np.save('{}bhy'.format(dir_name), bhys)
-    np.save('{}bhz'.format(dir_name), bhzs)
-
-
-def create_dir(dir_name):
-    """ create directory name according to the run """
-    import os
-    import errno
-    if not os.path.exists(os.path.dirname(dir_name)):
-        try:
-            os.makedirs(os.path.dirname(dir_name))
-        except OSError as exc:  # Guard against race condition
-            if exc.errno != errno.EEXIST:
-                raise
+from param_func import *
 
 
 def mmbh_from_txt(path_run):
+    """ main function: convert most massive BHs data in the txt files
+        from MP-Gadget into one single numpy array for each quantity """
 
     kwbh = KWBHS('{}{}'.format(PATH_ZOO, path_run))
 
@@ -54,17 +22,17 @@ def mmbh_from_txt(path_run):
     bhys = kwbh.get_bhpos(1)
     bhzs = kwbh.get_bhpos(2)
 
-    def get_mmbhele(arr, bhmass, redshift, z):
-        con = redshift == z
-        bhmass_z = bhmass[con]
-        arr_z = arr[con]
-        mmbhele = arr_z[np.argmax(bhmass_z)]
-        return mmbhele
-
-    def get_mmbharr(arr, bhmass, redshift):
-        mmbharr = np.array([get_mmbhele(arr, bhmass, redshift, z)
-                            for z in np.unique(redshifts)])
-        return mmbharr
+    # def get_mmbhele(arr, bhmass, redshift, z):
+    #     con = redshift == z
+    #     bhmass_z = bhmass[con]
+    #     arr_z = arr[con]
+    #     mmbhele = arr_z[np.argmax(bhmass_z)]
+    #     return mmbhele
+    #
+    # def get_mmbharr(arr, bhmass, redshift):
+    #     mmbharr = np.array([get_mmbhele(arr, bhmass, redshift, z)
+    #                         for z in np.unique(redshifts)])
+    #     return mmbharr
 
     # get quantity of the most massive BH at each time step
     redshift = np.unique(redshifts)
@@ -78,14 +46,14 @@ def mmbh_from_txt(path_run):
     bhy = get_mmbharr(bhys, bhmasss, redshifts)
     bhz = get_mmbharr(bhzs, bhmasss, redshifts)
 
-    def filt_bhmass(bhmass):
-        bhmass_sort = np.flip(bhmass, 0)
-        mask = [True] * len(bhmass)
-        for i in range(1, len(bhmass)):
-            if bhmass_sort[i - 1] > bhmass_sort[i]:
-                bhmass_sort[i] = bhmass_sort[i - 1]
-                mask[i] = False
-        return np.flip(mask, 0)
+    # def filt_bhmass(bhmass):
+    #     bhmass_sort = np.flip(bhmass, 0)
+    #     mask = [True] * len(bhmass)
+    #     for i in range(1, len(bhmass)):
+    #         if bhmass_sort[i - 1] > bhmass_sort[i]:
+    #             bhmass_sort[i] = bhmass_sort[i - 1]
+    #             mask[i] = False
+    #     return np.flip(mask, 0)
 
     # mask arr of the most massive BH at each time step
     mask = filt_bhmass(bhmass)
@@ -103,10 +71,11 @@ def mmbh_from_txt(path_run):
     bhz = bhz[mask]
 
     # create directory and output data
-    dir_name = 'mmbhdata/{}_{}/'.format(path_run[:16], path_run[25:-7])
+    dir_name = 'mmbhdata/{}_{}/'.format(path_run[IDX_P1_I:IDX_P1_F],
+                                        path_run[IDX_P2_I:IDX_P2_F])
     create_dir(dir_name)
-    npsaves(dir_name, redshifts, bhmasss, bhids, bhaccs,
-            bhrhos, bhcss, bhvels, bhxs, bhys, bhzs)
+    npsaves(dir_name, redshift, bhmass, bhid, bhacc,
+            bhrho, bhcs, bhvel, bhx, bhy, bhz)
 
 
 p = multiprocessing.Pool(16)
