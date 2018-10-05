@@ -11,7 +11,8 @@ PATH_RUNS = ['run_10Mpc_362341/Run_seed5e5/Con_2/']    # list of runs
 # TODO PATH_RUN[25:-7] will give '5e5'
 
 
-def npsaves(dir_name):
+def npsaves(dir_name, redshifts, bhmasss, bhids, bhaccs,
+            bhrhos, bhcss, bhvels, bhxs, bhys, bhzs):
     """ save bh data """
     np.save('{}redshift'.format(dir_name), redshifts)
     np.save('{}bhmass'.format(dir_name), bhmasss)
@@ -58,7 +59,8 @@ def allbh_from_txt(path_run):
     # create directory and output data
     dir_name = 'allbhdata/{}_{}/'.format(path_run[:16], path_run[25:-7])
     create_dir(dir_name)
-    npsaves(dir_name)
+    npsaves(dir_name, redshifts, bhmasss, bhids, bhaccs,
+            bhrhos, bhcss, bhvels, bhxs, bhys, bhzs)
 
 
 p = multiprocessing.Pool(16)
