@@ -40,7 +40,7 @@ def create_dir(dir_name):
 
 def mmbh_from_txt(path_run):
 
-    kwbh = KWBHS(path_run)
+    kwbh = KWBHS('{}{}'.format(PATH_ZOO, path_run))
 
     # get data from text files
     redshifts = kwbh.get_redshifts()
