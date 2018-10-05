@@ -11,9 +11,35 @@ PATH_RUNS = ['run_10Mpc_362341/Run_seed5e5/Con_2/']    # list of runs
 # TODO PATH_RUN[25:-7] will give '5e5'
 
 
+def npsaves(dir_name):
+    """ save bh data """
+    np.save('{}redshift'.format(dir_name), redshifts)
+    np.save('{}bhmass'.format(dir_name), bhmasss)
+    np.save('{}bhid'.format(dir_name), bhids)
+    np.save('{}bhacc'.format(dir_name), bhaccs)
+    np.save('{}bhrho'.format(dir_name), bhrhos)
+    np.save('{}bhcs'.format(dir_name), bhcss)
+    np.save('{}bhvel'.format(dir_name), bhvels)
+    np.save('{}bhx'.format(dir_name), bhxs)
+    np.save('{}bhy'.format(dir_name), bhys)
+    np.save('{}bhz'.format(dir_name), bhzs)
+
+
+def create_dir(dir_name):
+    """ create directory name according to the run """
+    import os
+    import errno
+    if not os.path.exists(os.path.dirname(dir_name)):
+        try:
+            os.makedirs(os.path.dirname(dir_name))
+        except OSError as exc:  # Guard against race condition
+            if exc.errno != errno.EEXIST:
+                raise
+
+
 def allbh_from_txt(path_run):
-    """ convert BH data in the txt files from MP-Gadget
-        into one single numpy array for each quantity """
+    """ main function: convert all BHs data in the txt files from
+        MP-Gadget into one single numpy array for each quantity """
 
     kwbh = KWBHS('{}{}'.format(PATH_ZOO, path_run))
 
@@ -29,28 +55,10 @@ def allbh_from_txt(path_run):
     bhys = kwbh.get_bhpos(1)
     bhzs = kwbh.get_bhpos(2)
 
-    # create directory name according to the run
-    import os
-    import errno
+    # create directory and output data
     dir_name = 'allbhdata/{}_{}/'.format(path_run[:16], path_run[25:-7])
-    if not os.path.exists(os.path.dirname(dir_name)):
-        try:
-            os.makedirs(os.path.dirname(dir_name))
-        except OSError as exc:  # Guard against race condition
-            if exc.errno != errno.EEXIST:
-                raise
-
-    # save date
-    np.save('{}redshift'.format(dir_name), redshifts)
-    np.save('{}bhmass'.format(dir_name), bhmasss)
-    np.save('{}bhid'.format(dir_name), bhids)
-    np.save('{}bhacc'.format(dir_name), bhaccs)
-    np.save('{}bhrho'.format(dir_name), bhrhos)
-    np.save('{}bhcs'.format(dir_name), bhcss)
-    np.save('{}bhvel'.format(dir_name), bhvels)
-    np.save('{}bhx'.format(dir_name), bhxs)
-    np.save('{}bhy'.format(dir_name), bhys)
-    np.save('{}bhz'.format(dir_name), bhzs)
+    create_dir(dir_name)
+    npsaves(dir_name)
 
 
 p = multiprocessing.Pool(16)
