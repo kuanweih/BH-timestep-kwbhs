@@ -22,18 +22,6 @@ def mmbh_from_txt(path_run):
     bhys = kwbh.get_bhpos(1)
     bhzs = kwbh.get_bhpos(2)
 
-    # def get_mmbhele(arr, bhmass, redshift, z):
-    #     con = redshift == z
-    #     bhmass_z = bhmass[con]
-    #     arr_z = arr[con]
-    #     mmbhele = arr_z[np.argmax(bhmass_z)]
-    #     return mmbhele
-    #
-    # def get_mmbharr(arr, bhmass, redshift):
-    #     mmbharr = np.array([get_mmbhele(arr, bhmass, redshift, z)
-    #                         for z in np.unique(redshifts)])
-    #     return mmbharr
-
     # get quantity of the most massive BH at each time step
     redshift = np.unique(redshifts)
     bhmass = get_mmbharr(bhmasss, bhmasss, redshifts)
@@ -45,15 +33,6 @@ def mmbh_from_txt(path_run):
     bhx = get_mmbharr(bhxs, bhmasss, redshifts)
     bhy = get_mmbharr(bhys, bhmasss, redshifts)
     bhz = get_mmbharr(bhzs, bhmasss, redshifts)
-
-    # def filt_bhmass(bhmass):
-    #     bhmass_sort = np.flip(bhmass, 0)
-    #     mask = [True] * len(bhmass)
-    #     for i in range(1, len(bhmass)):
-    #         if bhmass_sort[i - 1] > bhmass_sort[i]:
-    #             bhmass_sort[i] = bhmass_sort[i - 1]
-    #             mask[i] = False
-    #     return np.flip(mask, 0)
 
     # mask arr of the most massive BH at each time step
     mask = filt_bhmass(bhmass)

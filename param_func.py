@@ -54,9 +54,9 @@ def by_merger_id(mgids, bhids, quantity):
     return quantity[con]
 
 
-def get_mmbharr(arr, bhmass, redshift, redshifts):
+def get_mmbharr(arr, bhmass, redshift):
     mmbharr = np.array([get_mmbhele(arr, bhmass, redshift, z)
-                        for z in np.unique(redshifts)])
+                        for z in np.unique(redshift)])
     return mmbharr
 
 

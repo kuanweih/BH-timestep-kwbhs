@@ -27,12 +27,6 @@ def mergers_from_txt(path_run):
     bhys = np.load('{}bhy.npy'.format(allbh_dir))
     bhzs = np.load('{}bhz.npy'.format(allbh_dir))
 
-    # def by_merger_id(mgids, bhids, quantity):
-    #     con = np.array([False] * len(bhids))
-    #     for v in range(len(mgids)):
-    #         con = con + (bhids == mgids[v])
-    #     return quantity[con]
-
     # merger bhid survive
     redshift = by_merger_id(mgids, bhids, redshifts)
     bhmass = by_merger_id(mgids, bhids, bhmasss)
