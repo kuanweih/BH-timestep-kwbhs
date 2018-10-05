@@ -8,6 +8,7 @@ PATH_RUNS = ['run_10Mpc_362341/Run_seed5e5/Con_2/']    # list of runs
 # TODO PATH_RUN[:16] will give 'run_10Mpc_362341'
 # TODO PATH_RUN[25:-7] will give '5e5'
 
+
 def npsaves(dir_name, redshifts, bhmasss, bhids, bhaccs,
             bhrhos, bhcss, bhvels, bhxs, bhys, bhzs):
     """ save bh data """
@@ -21,6 +22,19 @@ def npsaves(dir_name, redshifts, bhmasss, bhids, bhaccs,
     np.save('{}bhx'.format(dir_name), bhxs)
     np.save('{}bhy'.format(dir_name), bhys)
     np.save('{}bhz'.format(dir_name), bhzs)
+
+
+def create_dir(dir_name):
+    """ create directory name according to the run """
+    import os
+    import errno
+    if not os.path.exists(os.path.dirname(dir_name)):
+        try:
+            os.makedirs(os.path.dirname(dir_name))
+        except OSError as exc:  # Guard against race condition
+            if exc.errno != errno.EEXIST:
+                raise
+
 
 def mergers_from_txt(path_run):
 
@@ -43,7 +57,6 @@ def mergers_from_txt(path_run):
     bhys = np.load('{}bhy.npy'.format(allbh_dir))
     bhzs = np.load('{}bhz.npy'.format(allbh_dir))
 
-
     def by_merger_id(mgids, bhids, quantity):
         con = np.array([False] * len(bhids))
         for v in range(len(mgids)):
@@ -62,13 +75,11 @@ def mergers_from_txt(path_run):
     bhy = by_merger_id(mgids, bhids, bhys)
     bhz = by_merger_id(mgids, bhids, bhzs)
 
-
     # create directory and output data
     dir_name = 'mergerdata/{}_{}/'.format(path_run[:16], path_run[25:-7])
     create_dir(dir_name)
     npsaves(dir_name, redshifts, bhmasss, bhids, bhaccs,
             bhrhos, bhcss, bhvels, bhxs, bhys, bhzs)
-
 
 
 p = multiprocessing.Pool(16)
